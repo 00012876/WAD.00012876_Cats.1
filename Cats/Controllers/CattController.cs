@@ -1,4 +1,6 @@
 ﻿using Cats.Data;
+using Cats.Models;
+using Cats.Models.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +25,22 @@ namespace Cats.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCatt()
+        public IActionResult AddCatt(AddCatRequestDTO request)
         {
+            var domainModelCat = new Cat
+            {
 
+                Id = Guid.NewGuid(),
+                Name = request.Name,
+                Email = request.Email,
+                Phone = request.Phone,
+                Favorite = request.Favorite,
+            };
+
+            dbContext.Catt.Add(domainModelCat);
+            dbContext.SaveChanges();
+
+            return Ok(domainModelCat);
         }
 
     }

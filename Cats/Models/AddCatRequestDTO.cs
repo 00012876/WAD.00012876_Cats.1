@@ -1,6 +1,6 @@
 ﻿namespace Cats.Models
 {
-    public class AddRequestDTO
+    public class AddCatRequestDTO
     {
         public required string Name { get; set; }
         public string? Email { get; set; }
